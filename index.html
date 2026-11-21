@@ -481,7 +481,6 @@ main.wrap>.explore-section{margin-top:clamp(15px,1.8vw,21px)}
   .site-top .navbar .nav{position:absolute;top:100%;left:0;right:0;width:100%;margin:0;border-radius:0 0 14px 14px;
     background:rgba(11,32,53,.98);box-shadow:0 16px 30px rgba(0,0,0,.30)}
   .hero-zone{padding-bottom:22px}
-  .hero-zone .hero-copy{bottom:28px}
   .hero-zone .hero-copy .tag{font-size:8px;padding:5px 8px;letter-spacing:1.2px}
   .hero-zone .hero-copy h1{font-size:clamp(24px,7vw,30px);letter-spacing:-.7px;margin:12px 0 8px}
   .hero-zone .hero-copy .meta{font-size:10px}
@@ -546,6 +545,154 @@ main.wrap>.explore-section{margin-top:clamp(15px,1.8vw,21px)}
 #berita .cards .card[data-article-slug]:focus-visible,
 #terkini .latest-list .latest-item[data-article-slug]:focus-visible,
 .hero-zone .hot-card[data-article-slug]:focus-visible{outline:3px solid #2684ff;outline-offset:3px}
+
+/* =======================================================
+   PERBAIKAN TAMPILAN TOP 10 BERITA HANGAT (MOBILE)
+   ======================================================= */
+@media (max-width: 540px) {
+  /* Mengatur ulang tata letak kolom kanan (Top 10) agar tersusun vertikal */
+  .hero-zone .hero-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: auto;
+    min-height: 0;
+  }
+
+  /* Header: Paling Dibicarakan & Top 10 Berita Hangat */
+  .hero-zone .hot-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2px;
+    padding: 0;
+  }
+
+  .hero-zone .hot-head > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-zone .hot-head .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    color: #8fc7ff;
+    margin: 0;
+  }
+
+  .hero-zone .hot-head h2 {
+    font-size: 16px;
+    line-height: 1.2;
+    margin: 0;
+    color: #fff;
+    font-weight: 800;
+  }
+
+  /* Tombol Panah Navigasi */
+  .hero-zone .hot-controls {
+    display: flex;
+    gap: 6px;
+  }
+
+  .hero-zone .hot-controls .hero-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    color: #fff;
+  }
+
+  /* Grid untuk 2 Kartu Berita */
+  .hero-zone .hot-window {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 165px;
+    gap: 10px;
+    min-height: 0;
+  }
+
+  /* Desain Kartu */
+  .hero-zone .hot-card {
+    border-radius: 12px;
+    height: 165px;
+    min-height: 165px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Overlay Gradient Gelap di Bawah */
+  .hero-zone .hot-card::after {
+    content: "";
+    position: absolute;
+    inset: 25% 0 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(4, 20, 35, 0.95) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Area Teks di Dalam Kartu */
+  .hero-zone .hot-card .side-copy {
+    position: absolute;
+    z-index: 2;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .hero-zone .hot-card .side-copy .tag {
+    font-size: 7px;
+    letter-spacing: 0.65px;
+    padding-bottom: 2px;
+    border-bottom-width: 1px;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Judul Berita: Dibatasi Maksimal 3 Baris */
+  .hero-zone .hot-card .side-copy h3 {
+    font-size: 11px;
+    line-height: 1.25;
+    margin: 5px 0 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+  }
+
+  .hero-zone .hot-card .side-copy .meta {
+    font-size: 9px;
+    color: #d5e1ed;
+  }
+
+  /* Badge Angka Peringkat (01, 02) */
+  .hero-zone .hot-rank {
+    position: absolute;
+    z-index: 2;
+    top: 8px;
+    right: 8px;
+    background: rgba(16, 42, 67, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-size: 9px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  /* Teks Footer (01-02 / 10) */
+  .hero-zone .hot-foot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #a9bdd0;
+    margin-top: 2px;
+  }
+}
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 </head>

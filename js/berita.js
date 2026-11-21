@@ -22,10 +22,10 @@
   }
 
   const related = (article.related || []).map(item => `
-    <div class="related-item">
+    <a class="related-item" href="berita.html?slug=${encodeURIComponent(item.slug || '')}">
       <img src="${escapeHTML(item.image)}" alt="" loading="lazy">
       <div><span>${escapeHTML(item.category)}</span><strong>${escapeHTML(item.title)}</strong></div>
-    </div>`).join('');
+    </a>`).join('');
 
   root.innerHTML = `
     <div class="breadcrumbs" aria-label="Breadcrumb">

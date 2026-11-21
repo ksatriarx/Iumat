@@ -1,32 +1,34 @@
-IUMAT — TAHAP 1: DETAIL BERITA TERHUBUNG
+IUMAT — TAHAP 1 LANJUTAN: SEMUA KARTU BERITA TERHUBUNG
 
 Isi paket:
-- index.html: homepage master dengan perubahan terbatas pada tautan berita utama.
-- berita.html: template halaman detail berita.
+- index.html: homepage dari master yang sudah diperbaiki offset desktop, dengan tautan untuk Hero, Top 10, Berita Pilihan, dan Berita Terkini.
+- berita.html: satu template untuk seluruh artikel.
 - css/berita.css: stylesheet khusus halaman detail.
-- js/berita-data.js: data artikel contoh berdasarkan slug.
-- js/berita.js: renderer halaman detail.
+- js/berita-data.js: data artikel berdasarkan slug.
+- js/berita.js: renderer halaman detail dan tautan berita terkait.
 
-Perubahan pada homepage:
-- Hanya berita pertama pada Hero Slider yang dihubungkan ke halaman detail.
-- Judul berita dapat diklik.
-- Area kartu berita utama dapat diklik, kecuali tombol kontrol slider.
-- Tautan tujuan: berita.html?slug=umkm-lokal-kekuatan-ekonomi-aceh-timur
-- Slide kedua dan ketiga tidak diarahkan ke artikel ini.
-- Tidak mengubah susunan bagian lain, desain navigasi, maupun fungsi slider.
+Yang sekarang dapat diklik:
+1. Semua slide Hero (setiap slide menuju artikel masing-masing).
+2. Kedua kartu Top 10 yang terlihat; tautannya ikut berubah sesuai slide Top 10 yang sedang tampil. Seluruh 10 item Top 10 memiliki slug.
+3. Empat kartu Berita Pilihan.
+4. Tiga item Berita Terkini.
+5. Berita terkait pada halaman detail.
 
-Cara mencoba:
-1. Ekstrak seluruh isi ZIP ke satu folder.
-2. Pastikan index.html, berita.html, folder css, dan folder js berada pada susunan seperti di dalam ZIP.
-3. Buka index.html melalui server lokal atau hosting.
-4. Pada Hero Slide pertama, klik judul atau area berita utama (bukan tombol panah/dot).
-5. Halaman berita.html akan membuka artikel berdasarkan slug.
+Cara memasang:
+1. Cadangkan folder proyek IUMAT terlebih dahulu.
+2. Ekstrak ZIP ini.
+3. Ganti index.html dengan index.html dari ZIP.
+4. Salin berita.html serta folder css dan js ke folder proyek. Gabungkan folder; jangan menghapus file lama lain yang tidak disebutkan.
+5. Pastikan struktur berita.html, css/berita.css, js/berita.js, dan js/berita-data.js berada sejajar seperti di dalam ZIP.
+6. Buka homepage melalui hosting atau server lokal, lalu klik kartu-kartu berita.
 
-Catatan:
-Naskah artikel di js/berita-data.js masih merupakan konten demonstrasi dan perlu diganti dengan naskah redaksi yang sudah diverifikasi sebelum publikasi.
+Format tautan: berita.html?slug=nama-artikel
 
-Pemeriksaan yang dilakukan:
-- HTML berhasil diparse.
-- Inline JavaScript berhasil melewati pemeriksaan sintaks Node.js.
-- Perbandingan dengan master menunjukkan perubahan hanya pada CSS tautan judul dan JavaScript interaksi Hero.
-- Belum dilakukan pengujian browser langsung pada perangkat HP/desktop.
+Catatan konten:
+- Artikel utama sebelumnya tetap dipertahankan.
+- Artikel tambahan dibuat sebagai konten demonstrasi agar setiap kartu dapat diuji dan menuju artikel yang tepat.
+- Konten demonstrasi bukan laporan jurnalistik terverifikasi. Redaksi perlu mengganti/memeriksa naskah, tanggal, dan foto sebelum publikasi.
+
+Perubahan homepage dibatasi pada data slug, tautan/interaksi kartu berita, dan fokus keyboard. Perbaikan offset desktop 145px yang sudah disetujui tetap dipertahankan; offset mobile tetap 88px.
+
+Validasi yang dilakukan: parsing HTML, pemeriksaan sintaks JavaScript, pemeriksaan slug/link antarhalaman, dan uji browser lokal desktop/mobile jika runtime browser tersedia.

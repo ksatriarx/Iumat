@@ -159,7 +159,7 @@ main.wrap>.explore-section{margin-top:clamp(15px,1.8vw,21px)}
 
 
 /* Offset target navigasi agar judul bagian tidak tertutup sticky navigation */
-#berita,#direktori,#produk,#terkini,#agenda,#daftar-umkm{scroll-margin-top:145px}
+#berita,#direktori,#produk,#terkini,#agenda,#daftar-umkm{scroll-margin-top:58px}
 @media(max-width:540px){
   #berita,#direktori,#produk,#terkini,#agenda,#daftar-umkm{scroll-margin-top:88px}
 }
@@ -439,10 +439,6 @@ main.wrap>.explore-section{margin-top:clamp(15px,1.8vw,21px)}
 .hero-zone .hero-copy .tag{color:#e4f1ff;border:1px solid rgba(167,211,255,.55);border-radius:4px;background:rgba(9,38,67,.38);
   padding:6px 10px;font-size:9px;letter-spacing:1.5px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .hero-zone .hero-copy h1{max-width:640px;margin:14px 0 10px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-1.2px;font-weight:800;text-wrap:balance}
-.hero-zone .hero-main.has-detail-link{cursor:pointer}
-.hero-zone .hero-detail-title-link{color:inherit;text-decoration:none;text-decoration-thickness:2px;text-underline-offset:5px}
-.hero-zone .hero-detail-title-link:hover{text-decoration:underline}
-.hero-zone .hero-detail-title-link:focus-visible{outline:2px solid #9fd0ff;outline-offset:5px;border-radius:3px}
 .hero-zone .hero-copy .meta{color:#dce8f4;font-size:11px}
 .hero-zone .hero-controls{position:relative;z-index:3;margin-top:20px;gap:9px}
 .hero-zone .hero-controls .dot{width:7px;height:7px;background:rgba(255,255,255,.5)}
@@ -537,14 +533,6 @@ main.wrap>.explore-section{margin-top:clamp(15px,1.8vw,21px)}
 .sf-cover small{font-size:8px;letter-spacing:1.6px;font-weight:900;opacity:.85}
 .sf-cover strong{font-family:Georgia,serif;font-size:clamp(22px,3.4vw,32px);line-height:1.12}
 .sf-cover em{font-style:normal;font-size:10px;letter-spacing:1px;opacity:.8}
-
-/* Tahap 1 lanjutan: kartu berita dapat dibuka dengan klik maupun keyboard. */
-#berita .cards .card[data-article-slug],
-#terkini .latest-list .latest-item[data-article-slug],
-.hero-zone .hot-card[data-article-slug]{cursor:pointer}
-#berita .cards .card[data-article-slug]:focus-visible,
-#terkini .latest-list .latest-item[data-article-slug]:focus-visible,
-.hero-zone .hot-card[data-article-slug]:focus-visible{outline:3px solid #2684ff;outline-offset:3px}
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 </head>
@@ -795,53 +783,35 @@ function filterBusinesses(){let q=search.value.toLowerCase(),c=cat.value,d=distr
 
 // Slider berita utama IUMAT: autoplay santai, tombol, indikator, dan swipe mobile.
 const heroSlides=[
- {image:'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85',alt:'Pelaku usaha berdiskusi di ruang kerja',tag:'Sorotan IUMAT',title:'UMKM Lokal, Kekuatan Ekonomi yang Tumbuh dari Aceh Timur',slug:'umkm-lokal-kekuatan-ekonomi-aceh-timur',meta:'Redaksi IUMAT &nbsp;•&nbsp; 21 November 2026 &nbsp;•&nbsp; 5 menit baca'},
- {image:'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=85',alt:'Aneka roti dan kue',tag:'Kuliner',title:'Ragam Kuliner Lokal yang Punya Peluang Pasar',slug:'ragam-kuliner-lokal-peluang-pasar',meta:'Redaksi IUMAT &nbsp;•&nbsp; 21 November 2026 &nbsp;•&nbsp; 4 menit baca'},
- {image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85',alt:'Produk lokal dan aksesori',tag:'Produk Lokal',title:'Kreativitas Produk Daerah Menjangkau Pasar Lebih Luas',slug:'kreativitas-produk-daerah-pasar-luas',meta:'Redaksi IUMAT &nbsp;•&nbsp; 20 November 2026 &nbsp;•&nbsp; 4 menit baca'}
+ {image:'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85',alt:'Pelaku usaha berdiskusi di ruang kerja',tag:'Sorotan IUMAT',title:'UMKM Lokal, Kekuatan Ekonomi yang Tumbuh dari Aceh Timur',meta:'Redaksi IUMAT &nbsp;•&nbsp; 21 November 2026 &nbsp;•&nbsp; 5 menit baca'},
+ {image:'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=85',alt:'Aneka roti dan kue',tag:'Kuliner',title:'Ragam Kuliner Lokal yang Punya Peluang Pasar',meta:'Redaksi IUMAT &nbsp;•&nbsp; 21 November 2026 &nbsp;•&nbsp; 4 menit baca'},
+ {image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85',alt:'Produk lokal dan aksesori',tag:'Produk Lokal',title:'Kreativitas Produk Daerah Menjangkau Pasar Lebih Luas',meta:'Redaksi IUMAT &nbsp;•&nbsp; 20 November 2026 &nbsp;•&nbsp; 4 menit baca'}
 ];
 const heroZone=document.getElementById('heroZone'),hero=document.getElementById('iumatHero'),heroImage=document.getElementById('heroImage'),heroDots=[...document.querySelectorAll('.hero-controls .dot')];
 let heroIndex=0,heroTimer,heroStartX=0;
 function restartHeroMotion(){const motionClass='kenburns-'+(heroIndex+1);heroImage.classList.remove('kenburns-1','kenburns-2','kenburns-3');void heroImage.offsetWidth;heroImage.classList.add(motionClass)}
-function syncHeroArticleLink(){
- const title=document.getElementById('heroTitle');
- const item=heroSlides[heroIndex];
- title.textContent='';
- const link=document.createElement('a');
- link.className='hero-detail-title-link';
- link.href='berita.html?slug='+encodeURIComponent(item.slug);
- link.textContent=item.title;
- link.setAttribute('aria-label','Baca berita lengkap: '+item.title);
- title.appendChild(link);
- hero.classList.add('has-detail-link');
- hero.setAttribute('aria-label','Berita utama IUMAT. Klik untuk membaca berita lengkap.');
-}
 restartHeroMotion();
-syncHeroArticleLink();
-hero.addEventListener('click',event=>{
- if(event.target.closest('button,a'))return;
- window.location.href='berita.html?slug='+encodeURIComponent(heroSlides[heroIndex].slug);
-});
-function showHero(index){heroIndex=(index+heroSlides.length)%heroSlides.length;const item=heroSlides[heroIndex];heroZone.classList.add('is-changing');setTimeout(()=>{heroImage.onload=()=>{restartHeroMotion();heroZone.classList.remove('is-changing');heroImage.onload=null};heroImage.src=item.image;heroImage.alt=item.alt;document.getElementById('heroTag').textContent=item.tag;syncHeroArticleLink();document.getElementById('heroMeta').innerHTML=item.meta;if(heroImage.complete){restartHeroMotion();heroZone.classList.remove('is-changing')}},420);heroDots.forEach((dot,i)=>{dot.classList.toggle('active',i===heroIndex);if(i===heroIndex)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')});const bar=document.getElementById('heroProgress');bar.style.transition='none';bar.style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transition='width 7s linear';bar.style.width='100%'}));}
+function showHero(index){heroIndex=(index+heroSlides.length)%heroSlides.length;const item=heroSlides[heroIndex];heroZone.classList.add('is-changing');setTimeout(()=>{heroImage.onload=()=>{restartHeroMotion();heroZone.classList.remove('is-changing');heroImage.onload=null};heroImage.src=item.image;heroImage.alt=item.alt;document.getElementById('heroTag').textContent=item.tag;document.getElementById('heroTitle').textContent=item.title;document.getElementById('heroMeta').innerHTML=item.meta;if(heroImage.complete){restartHeroMotion();heroZone.classList.remove('is-changing')}},420);heroDots.forEach((dot,i)=>{dot.classList.toggle('active',i===heroIndex);if(i===heroIndex)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')});const bar=document.getElementById('heroProgress');bar.style.transition='none';bar.style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transition='width 7s linear';bar.style.width='100%'}));}
 function startHero(){clearInterval(heroTimer);heroTimer=setInterval(()=>showHero(heroIndex+1),7000)}
 document.getElementById('heroPrev').addEventListener('click',()=>{showHero(heroIndex-1);startHero()});document.getElementById('heroNext').addEventListener('click',()=>{showHero(heroIndex+1);startHero()});heroDots.forEach(dot=>dot.addEventListener('click',()=>{showHero(Number(dot.dataset.slide));startHero()}));hero.addEventListener('mouseenter',()=>clearInterval(heroTimer));hero.addEventListener('mouseleave',startHero);hero.addEventListener('touchstart',e=>{heroStartX=e.changedTouches[0].clientX},{passive:true});hero.addEventListener('touchend',e=>{const delta=e.changedTouches[0].clientX-heroStartX;if(Math.abs(delta)>45){showHero(heroIndex+(delta<0?1:-1));startHero()}},{passive:true});startHero();
 
 // Slider Top 10 berita hangat: dua kartu tampil sekaligus, loop tanpa batas.
 const hotStories=[
- {image:'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=700&q=85',alt:'Aneka roti dan kue',tag:'Kuliner',title:'Ragam Kuliner Lokal yang Punya Peluang Pasar',slug:'ragam-kuliner-lokal-peluang-pasar',meta:'21 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85',alt:'Produk lokal dan aksesori',tag:'Produk Lokal',title:'Kreativitas Produk Daerah Menjangkau Pasar Lebih Luas',slug:'kreativitas-produk-daerah-pasar-luas',meta:'20 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=85',alt:'Aktivitas memasak',tag:'UMKM',title:'Peluang Usaha Kuliner Rumahan Terus Menarik Perhatian',slug:'peluang-usaha-kuliner-rumahan',meta:'19 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=85',alt:'Hasil pertanian segar',tag:'Pertanian',title:'Produk Hasil Bumi Lokal Berpeluang Naik Kelas',slug:'produk-hasil-bumi-lokal-peluang-naik-kelas',meta:'18 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?auto=format&fit=crop&w=700&q=80',alt:'Kerajinan tangan',tag:'Kerajinan',title:'Karya Kreatif Perajin Lokal Menjangkau Pasar Baru',slug:'karya-kreatif-perajin-lokal-pasar-baru',meta:'17 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=700&q=80',alt:'Kopi disajikan',tag:'Kopi & Minuman',title:'Potensi Kopi dan Minuman Lokal Jadi Daya Tarik',slug:'potensi-kopi-minuman-lokal',meta:'16 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=700&q=80',alt:'Transaksi di toko',tag:'Bisnis',title:'Strategi Pelayanan untuk Menjaga Kepercayaan Pembeli',slug:'strategi-pelayanan-pelanggan-kepercayaan-pembeli',meta:'15 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=700&q=80',alt:'Diskusi tim usaha',tag:'Ekonomi',title:'Kolaborasi Membuka Peluang Baru bagi Pelaku UMKM',slug:'kolaborasi-jejaring-peluang-usaha-kecil',meta:'14 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=85',alt:'Catatan perencanaan bisnis',tag:'Tips UMKM',title:'Langkah Sederhana Menata Identitas Produk Usaha',slug:'langkah-sederhana-menata-identitas-kemasan-produk-umkm',meta:'13 Nov 2026'},
- {image:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80',alt:'Pembayaran digital',tag:'Digitalisasi',title:'Pembayaran Digital Memudahkan Transaksi Usaha Kecil',slug:'pembayaran-digital-transaksi-usaha-kecil',meta:'12 Nov 2026'}
+ {image:'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=700&q=85',alt:'Aneka roti dan kue',tag:'Kuliner',title:'Ragam Kuliner Lokal yang Punya Peluang Pasar',meta:'21 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85',alt:'Produk lokal dan aksesori',tag:'Produk Lokal',title:'Kreativitas Produk Daerah Menjangkau Pasar Lebih Luas',meta:'20 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=85',alt:'Aktivitas memasak',tag:'UMKM',title:'Peluang Usaha Kuliner Rumahan Terus Menarik Perhatian',meta:'19 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=85',alt:'Hasil pertanian segar',tag:'Pertanian',title:'Produk Hasil Bumi Lokal Berpeluang Naik Kelas',meta:'18 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1493106641515-6b5631de4bb9?auto=format&fit=crop&w=700&q=80',alt:'Kerajinan tangan',tag:'Kerajinan',title:'Karya Kreatif Perajin Lokal Menjangkau Pasar Baru',meta:'17 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=700&q=80',alt:'Kopi disajikan',tag:'Kopi & Minuman',title:'Potensi Kopi dan Minuman Lokal Jadi Daya Tarik',meta:'16 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=700&q=80',alt:'Transaksi di toko',tag:'Bisnis',title:'Strategi Pelayanan untuk Menjaga Kepercayaan Pembeli',meta:'15 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=700&q=80',alt:'Diskusi tim usaha',tag:'Ekonomi',title:'Kolaborasi Membuka Peluang Baru bagi Pelaku UMKM',meta:'14 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=85',alt:'Catatan perencanaan bisnis',tag:'Tips UMKM',title:'Langkah Sederhana Menata Identitas Produk Usaha',meta:'13 Nov 2026'},
+ {image:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80',alt:'Pembayaran digital',tag:'Digitalisasi',title:'Pembayaran Digital Memudahkan Transaksi Usaha Kecil',meta:'12 Nov 2026'}
 ];
 let hotIndex=0,hotTimer,hotTouchX=0;
 const hotCards=[...document.querySelectorAll('.hot-card')],hotCache={};let hotDir=1,hotToken=0;
 function loadHotImage(src){return new Promise(res=>{let c=hotCache[src];if(c&&c.complete)return res();if(!c){c=new Image();c.src=src;hotCache[src]=c}c.addEventListener('load',res,{once:true});c.addEventListener('error',res,{once:true});setTimeout(res,900)})}
-function fillHot(slot,item,rank){const card=hotCards[slot];card.dataset.articleSlug=item.slug;card.setAttribute('aria-label','Baca berita: '+item.title);const img=document.getElementById('hotImage'+slot);img.src=item.image;img.alt=item.alt;document.getElementById('hotTag'+slot).textContent=item.tag;document.getElementById('hotTitle'+slot).textContent=item.title;document.getElementById('hotMeta'+slot).textContent=item.meta;document.getElementById('hotRank'+slot).textContent=String(rank+1).padStart(2,'0')}
+function fillHot(slot,item,rank){const img=document.getElementById('hotImage'+slot);img.src=item.image;img.alt=item.alt;document.getElementById('hotTag'+slot).textContent=item.tag;document.getElementById('hotTitle'+slot).textContent=item.title;document.getElementById('hotMeta'+slot).textContent=item.meta;document.getElementById('hotRank'+slot).textContent=String(rank+1).padStart(2,'0')}
 function renderHot(initial){
  const token=++hotToken,dir=hotDir;
  document.getElementById('hotPosition').textContent=String(hotIndex+1).padStart(2,'0')+'–'+String((hotIndex+1)%10+1).padStart(2,'0')+' / 10';
@@ -865,39 +835,6 @@ function renderHot(initial){
 function moveHot(step){hotDir=step>0?1:-1;hotIndex=(hotIndex+step+hotStories.length)%hotStories.length;renderHot()}
 function startHot(){clearInterval(hotTimer);hotTimer=setInterval(()=>moveHot(1),6500)}
 document.getElementById('hotPrev').addEventListener('click',()=>{moveHot(-1);startHot()});document.getElementById('hotNext').addEventListener('click',()=>{moveHot(1);startHot()});document.getElementById('hotWindow').addEventListener('mouseenter',()=>clearInterval(hotTimer));document.getElementById('hotWindow').addEventListener('mouseleave',startHot);document.getElementById('hotWindow').addEventListener('touchstart',e=>{hotTouchX=e.changedTouches[0].clientX},{passive:true});document.getElementById('hotWindow').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-hotTouchX;if(Math.abs(dx)>35){moveHot(dx<0?1:-1);startHot()}},{passive:true});renderHot(true);startHot();
-
-// Hubungkan kartu Berita Pilihan dan Berita Terkini ke artikel berdasarkan slug.
-const featuredCardSlugs=[
- 'potensi-usaha-kuliner-rumahan-tren-produk-lokal',
- 'langkah-sederhana-menata-identitas-kemasan-produk-umkm',
- 'kreativitas-keterampilan-modal-usaha-berdaya-saing',
- 'produk-hasil-bumi-lokal-pengolahan-bernilai-tambah'
-];
-document.querySelectorAll('#berita .cards .card').forEach((card,index)=>{
- const slug=featuredCardSlugs[index];
- if(slug){card.dataset.articleSlug=slug;card.setAttribute('aria-label','Baca berita: '+card.querySelector('h3').textContent.trim())}
-});
-const latestCardSlugs=[
- 'strategi-pelayanan-pelanggan-kepercayaan-pembeli',
- 'kolaborasi-jejaring-peluang-usaha-kecil',
- 'kemudahan-pembayaran-digital-bagi-pelaku-umkm'
-];
-document.querySelectorAll('#terkini .latest-list .latest-item').forEach((card,index)=>{
- const slug=latestCardSlugs[index];
- if(slug){card.dataset.articleSlug=slug;card.setAttribute('aria-label','Baca berita: '+card.querySelector('h3').textContent.trim())}
-});
-function enableArticleCardNavigation(){
- document.querySelectorAll('[data-article-slug]').forEach(card=>{
-  card.setAttribute('role','link');card.setAttribute('tabindex','0');
-  if(card.dataset.articleNavigationReady==='true')return;
-  card.dataset.articleNavigationReady='true';
-  const navigate=()=>{const slug=card.dataset.articleSlug;if(slug)window.location.href='berita.html?slug='+encodeURIComponent(slug)};
-  card.addEventListener('click',event=>{if(event.target.closest('button,a'))return;navigate()});
-  card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();navigate()}});
- });
-}
-enableArticleCardNavigation();
-
 
 
 // Hero: ukur tinggi header+navigasi agar foto full-bleed berada di belakangnya; header jadi solid saat digulir.

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="Baca berita dan informasi seputar UMKM Aceh Timur di IUMAT.">
+  <title>Berita IUMAT — Info UMKM Aceh Timur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/berita.css">
+</head>
+<body>
+  <div class="topline">
+    <div class="wrap topline-inner">
+      <span class="topline-badge">INFO IUMAT</span>
+      <span class="topline-message">Portal informasi, inspirasi, dan promosi usaha lokal Aceh Timur</span>
+      <span class="topline-date">INFO UMKM ACEH TIMUR</span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap head">
+      <a class="brand" href="index.html#top" aria-label="IUMAT Beranda">
+        <span class="brandmark"><img src="https://i.ibb.co.com/60mSvsdL/1000592987-removebg-preview.png" alt="Logo IUMAT"></span>
+        <span class="brandtext"><strong>IUMAT</strong><span>INFO UMKM ACEH TIMUR</span></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Buka menu">☰</button>
+    </div>
+  </header>
+
+  <div class="navbar" id="navbar">
+    <nav class="wrap nav" id="primaryNav" aria-label="Navigasi utama">
+      <a href="index.html#top">Beranda</a>
+      <a class="is-active" href="index.html#berita" aria-current="page">Berita</a>
+      <a href="index.html#direktori">Direktori UMKM</a>
+      <a href="index.html#produk">Produk Lokal</a>
+      <a href="index.html#terkini">Ekonomi</a>
+      <a href="index.html#kontak">Kontak</a>
+    </nav>
+  </div>
+
+  <main class="wrap page-main">
+    <div id="articleRoot" aria-live="polite">
+      <div class="loading-state">Memuat berita IUMAT…</div>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="kontak">
+    <div class="wrap footer-inner">
+      <div>
+        <a class="footer-brand" href="index.html#top">IUMAT <span>INFO UMKM ACEH TIMUR</span></a>
+        <p>Ruang informasi dan promosi untuk mengenal, mendukung, dan mengembangkan usaha lokal Aceh Timur.</p>
+      </div>
+      <div class="footer-links">
+        <strong>Jelajahi IUMAT</strong>
+        <a href="index.html#berita">Berita pilihan</a>
+        <a href="index.html#terkini">Berita terkini</a>
+        <a href="index.html#direktori">Direktori UMKM</a>
+      </div>
+    </div>
+    <div class="wrap copyright">© <span id="yearNow"></span> IUMAT — Info UMKM Aceh Timur</div>
+  </footer>
+
+  <script src="js/berita-data.js"></script>
+  <script src="js/berita.js"></script>
+</body>
+</html>

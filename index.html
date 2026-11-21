@@ -439,6 +439,10 @@ main.wrap>.explore-section{margin-top:clamp(15px,1.8vw,21px)}
 .hero-zone .hero-copy .tag{color:#e4f1ff;border:1px solid rgba(167,211,255,.55);border-radius:4px;background:rgba(9,38,67,.38);
   padding:6px 10px;font-size:9px;letter-spacing:1.5px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .hero-zone .hero-copy h1{max-width:640px;margin:14px 0 10px;font-size:clamp(28px,3.4vw,42px);line-height:1.12;letter-spacing:-1.2px;font-weight:800;text-wrap:balance}
+.hero-zone .hero-main.has-detail-link{cursor:pointer}
+.hero-zone .hero-detail-title-link{color:inherit;text-decoration:none;text-decoration-thickness:2px;text-underline-offset:5px}
+.hero-zone .hero-detail-title-link:hover{text-decoration:underline}
+.hero-zone .hero-detail-title-link:focus-visible{outline:2px solid #9fd0ff;outline-offset:5px;border-radius:3px}
 .hero-zone .hero-copy .meta{color:#dce8f4;font-size:11px}
 .hero-zone .hero-controls{position:relative;z-index:3;margin-top:20px;gap:9px}
 .hero-zone .hero-controls .dot{width:7px;height:7px;background:rgba(255,255,255,.5)}
@@ -788,10 +792,34 @@ const heroSlides=[
  {image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85',alt:'Produk lokal dan aksesori',tag:'Produk Lokal',title:'Kreativitas Produk Daerah Menjangkau Pasar Lebih Luas',meta:'Redaksi IUMAT &nbsp;•&nbsp; 20 November 2026 &nbsp;•&nbsp; 4 menit baca'}
 ];
 const heroZone=document.getElementById('heroZone'),hero=document.getElementById('iumatHero'),heroImage=document.getElementById('heroImage'),heroDots=[...document.querySelectorAll('.hero-controls .dot')];
+const featuredArticleUrl='berita.html?slug=umkm-lokal-kekuatan-ekonomi-aceh-timur';
 let heroIndex=0,heroTimer,heroStartX=0;
 function restartHeroMotion(){const motionClass='kenburns-'+(heroIndex+1);heroImage.classList.remove('kenburns-1','kenburns-2','kenburns-3');void heroImage.offsetWidth;heroImage.classList.add(motionClass)}
+function syncHeroArticleLink(){
+ const title=document.getElementById('heroTitle');
+ if(heroIndex===0){
+  title.textContent='';
+  const link=document.createElement('a');
+  link.className='hero-detail-title-link';
+  link.href=featuredArticleUrl;
+  link.textContent=heroSlides[0].title;
+  link.setAttribute('aria-label','Baca berita lengkap: '+heroSlides[0].title);
+  title.appendChild(link);
+  hero.classList.add('has-detail-link');
+  hero.setAttribute('aria-label','Berita utama IUMAT. Klik untuk membaca berita lengkap.');
+ }else{
+  title.textContent=heroSlides[heroIndex].title;
+  hero.classList.remove('has-detail-link');
+  hero.setAttribute('aria-label','Berita utama IUMAT');
+ }
+}
 restartHeroMotion();
-function showHero(index){heroIndex=(index+heroSlides.length)%heroSlides.length;const item=heroSlides[heroIndex];heroZone.classList.add('is-changing');setTimeout(()=>{heroImage.onload=()=>{restartHeroMotion();heroZone.classList.remove('is-changing');heroImage.onload=null};heroImage.src=item.image;heroImage.alt=item.alt;document.getElementById('heroTag').textContent=item.tag;document.getElementById('heroTitle').textContent=item.title;document.getElementById('heroMeta').innerHTML=item.meta;if(heroImage.complete){restartHeroMotion();heroZone.classList.remove('is-changing')}},420);heroDots.forEach((dot,i)=>{dot.classList.toggle('active',i===heroIndex);if(i===heroIndex)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')});const bar=document.getElementById('heroProgress');bar.style.transition='none';bar.style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transition='width 7s linear';bar.style.width='100%'}));}
+syncHeroArticleLink();
+hero.addEventListener('click',event=>{
+ if(heroIndex!==0||event.target.closest('button,a'))return;
+ window.location.href=featuredArticleUrl;
+});
+function showHero(index){heroIndex=(index+heroSlides.length)%heroSlides.length;const item=heroSlides[heroIndex];heroZone.classList.add('is-changing');setTimeout(()=>{heroImage.onload=()=>{restartHeroMotion();heroZone.classList.remove('is-changing');heroImage.onload=null};heroImage.src=item.image;heroImage.alt=item.alt;document.getElementById('heroTag').textContent=item.tag;syncHeroArticleLink();document.getElementById('heroMeta').innerHTML=item.meta;if(heroImage.complete){restartHeroMotion();heroZone.classList.remove('is-changing')}},420);heroDots.forEach((dot,i)=>{dot.classList.toggle('active',i===heroIndex);if(i===heroIndex)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current')});const bar=document.getElementById('heroProgress');bar.style.transition='none';bar.style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transition='width 7s linear';bar.style.width='100%'}));}
 function startHero(){clearInterval(heroTimer);heroTimer=setInterval(()=>showHero(heroIndex+1),7000)}
 document.getElementById('heroPrev').addEventListener('click',()=>{showHero(heroIndex-1);startHero()});document.getElementById('heroNext').addEventListener('click',()=>{showHero(heroIndex+1);startHero()});heroDots.forEach(dot=>dot.addEventListener('click',()=>{showHero(Number(dot.dataset.slide));startHero()}));hero.addEventListener('mouseenter',()=>clearInterval(heroTimer));hero.addEventListener('mouseleave',startHero);hero.addEventListener('touchstart',e=>{heroStartX=e.changedTouches[0].clientX},{passive:true});hero.addEventListener('touchend',e=>{const delta=e.changedTouches[0].clientX-heroStartX;if(Math.abs(delta)>45){showHero(heroIndex+(delta<0?1:-1));startHero()}},{passive:true});startHero();
 
